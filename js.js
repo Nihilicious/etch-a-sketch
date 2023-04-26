@@ -1,23 +1,37 @@
 const container = document.querySelector('.container');
+const button = document.querySelector('.changer');
 
 const canvas = document.createElement('div');
 canvas.classList.add('canvas')
 
+//---------------------------------------------
+
+container.appendChild(canvas);
+
+function createCanvas(sizin){
+    canvas.replaceChildren();
+    boxes = [];
+    for(let i = 1; i<=sizin; i++){
+        boxes.push(i);
+        boxes[i-1] = document.createElement('div');
+        boxes[i-1].classList.add('box');
+        boxes[i-1].addEventListener('mouseenter', function(){
+            boxes[i-1].classList.add('hovered');
+        });
+        canvas.appendChild(boxes[i-1]);
+    };
+    container.appendChild(canvas);
+};
+//---------------------------------------------
+
 let choice = 16;
 let count = choice*choice;
-const boxes = [];
+let boxes = [];
 
-for(let i = 1; i<=count; i++){
-    boxes.push(i);
-    boxes[i-1] = document.createElement('div');
-    boxes[i-1].classList.add('box');
-    boxes[i-1].addEventListener('mouseenter', function(){
-        boxes[i-1].classList.add('hovered');
-    });
-    canvas.appendChild(boxes[i-1]);
-};
+button.addEventListener('click', function(){
+    choice = prompt('choose your grid size (up to 100)', 16);
+    count = choice*choice;
+    createCanvas(count);
+});
 
-
-console.log(boxes);
-console.log(canvas);
-container.appendChild(canvas);
+//---------------------------------------------
