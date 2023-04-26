@@ -6,7 +6,7 @@ body{
     align-items: center;
 }
 
-.canvas{
+.container, .canvas{
     display: flex;
     flex:none;
     flex-wrap: wrap;
